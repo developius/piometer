@@ -2,6 +2,7 @@
 
 # import the necessary components
 from flask import Flask, request, jsonify
+from servo_move import pushToServos
 app = Flask(__name__)
 
 # define a dictionary to store our information in
@@ -37,6 +38,7 @@ def api():
 	print("Mean CPU: %s" % meanCpu)
 	print("Mean memory: %s" % meanMem)
 
+	pushToServos(meanCpu, meanMem)
 	# tell the client that all is well
 	return(jsonify({"message": "ok"}))
 
