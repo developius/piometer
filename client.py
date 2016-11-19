@@ -16,6 +16,3 @@ while True:
 	res = requests.post('http://'+server+':8742/data', json={"uuid":"dockerpi-node-1", "stats": {"cpu": cpu, "memory": mem}})
 	if res.ok:
 		print(res.json())
-
-	# do a little sleep
-	sleep(0.5)
