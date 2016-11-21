@@ -3,7 +3,9 @@
 # get requirements
 import requests, psutil
 from time import sleep
+import os, socket
 
+hostname = socket.gethostname()
 server = "dockerpi.local"
 
 # forever do...
@@ -13,6 +15,6 @@ while True:
 	mem = psutil.virtual_memory().percent
 
 	# update server
-	res = requests.post('http://'+server+':8742/data', json={"uuid":"dockerpi-node-1", "stats": {"cpu": cpu, "memory": mem}})
+	res = requests.post('http://'+server+':8742/data', json={"uuid":hostname, "stats": {"cpu": cpu, "memory": mem}})
 	if res.ok:
 		print(res.json())
